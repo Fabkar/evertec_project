@@ -1,0 +1,23 @@
+{% include "head.html" %}
+<body>
+    {% block content %}
+    <h1>STORE SINGLE</h1>
+    <form action="/app/new/" method="post">
+        {% csrf_token %}
+        <div class="newOrder">
+            <h2>Fill out the form to generate a new order</h2>
+                <div class="form__group field">
+                    <input type="text" class="form__field" placeholder="Name " name="name" id='costumer_name' required />
+                </div>
+                <div class="form__group field">
+                    <input type="email" class="form__field" placeholder="Email @" name="name" id='costumer_email' required />
+                </div>
+                <div class="form__group field">
+                    <input type="number" class="form__field" placeholder="Mobile " name="name" id='costumer_mobile' required />
+                </div>
+            <button class="button" type="submit" name="submit">submit</button>
+        </div>
+    </form>
+    {% endblock content %}
+    {% include "footer.html" %}
+</body>
