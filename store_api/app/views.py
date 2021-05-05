@@ -1,12 +1,22 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from app.models import Order
+from app.forms import FormOrder
 from django.views.decorators.http import require_POST, require_GET
 
-@require_POST
+def index(request):
+    return render(request, 'index.html')
+
 def orderCreate(request):
     """Create a new Order"""
-    pass
+    form = FormOrder(request.POST)
+    if form.is_valid():
+        form.save()
+        return redirect('/app/orders/')
+
+@require_GET
+def NewOrder(request):
+    return render(request, 'neworders.html')
 
 @require_GET
 def orderDetail(request, id):
